@@ -1,0 +1,447 @@
+CREATE TABLE pm_Roles (
+  role_id smallint  PRIMARY KEY,
+  role_name varchar(50),
+  role_desc varchar(255)
+);
+
+INSERT INTO pm_Roles (role_id, role_name, role_desc) VALUES
+(1, 'Admin', 'Administrator Role'),
+(2, 'Manager', 'Manager Role'),
+(3, 'Developer', 'Developer Role'),
+(4, 'Tester', 'Tester Role'),
+(5, 'Analyst', 'Business Analyst Role'),
+(6, 'Designer', 'Designer Role'),
+(7, 'Support', 'Support Role'),
+(8, 'Guest', 'Guest Role'),
+(9,'Inactive resource','Inactive');
+
+CREATE TABLE pm_Users (
+  user_id serial PRIMARY KEY,
+  user_displayname varchar(50),
+  user_password varchar(50),
+  user_cdate date,
+  user_empl_id char(12),
+  user_status char(2),
+  user_ludate date,
+  user_role smallint REFERENCES pm_Roles(role_id)
+);
+
+drop table pm_users
+
+ALTER TABLE pm_Users
+ADD COLUMN email VARCHAR(255);
+
+-- Step 1: Create a sequence
+CREATE SEQUENCE user_id_seq;
+
+-- Step 2: Modify the data type of the column to integer
+ALTER TABLE pm_Users
+ALTER COLUMN user_id TYPE INTEGER;
+
+-- Step 3: Set the default value of the column to the next value of the sequence
+ALTER TABLE pm_Users
+ALTER COLUMN user_id SET DEFAULT nextval('user_id_seq');
+
+-- Step 4: Associate the sequence with the column
+ALTER SEQUENCE user_id_seq OWNED BY pm_Users.user_id;
+
+INSERT INTO pm_Users (user_displayname, user_password, user_cdate, user_empl_id, user_status, user_ludate, user_role) VALUES ('JohnDoe', 'password123', '2023-06-27', 'EMP021', 'AC', '2023-06-27', 1);
+INSERT INTO pm_Users (user_displayname, user_password, user_cdate, user_empl_id, user_status, user_ludate, user_role) VALUES ('JaneSmith', 'pass321word', '2023-06-27', 'EMP002', 'AC', '2023-06-27', 2);
+INSERT INTO pm_Users (user_displayname, user_password, user_cdate, user_empl_id, user_status, user_ludate, user_role) VALUES ('MikeJohnson', 'mikepass', '2023-06-27', 'EMP003', 'AC', '2023-06-27', 3);
+INSERT INTO pm_Users (user_displayname, user_password, user_cdate, user_empl_id, user_status, user_ludate, user_role) VALUES ('EmilyBrown', 'password456', '2023-06-27', 'EMP004', 'AC', '2023-06-27', 1);
+INSERT INTO pm_Users (user_displayname, user_password, user_cdate, user_empl_id, user_status, user_ludate, user_role) VALUES ('DavidWilson', 'pass789word', '2023-06-27', 'EMP005', 'AC', '2023-06-27', 2);
+INSERT INTO pm_Users (user_displayname, user_password, user_cdate, user_empl_id, user_status, user_ludate, user_role) VALUES ('SarahDavis', 'sarahpass', '2023-06-27', 'EMP006', 'AC', '2023-06-27', 3);
+INSERT INTO pm_Users (user_displayname, user_password, user_cdate, user_empl_id, user_status, user_ludate, user_role) VALUES ('MichaelMiller', 'password123', '2023-06-27', 'EMP007', 'AC', '2023-06-27', 1);
+INSERT INTO pm_Users (user_displayname, user_password, user_cdate, user_empl_id, user_status, user_ludate, user_role) VALUES ('OliviaAnderson', 'pass321word', '2023-06-27', 'EMP008', 'AC', '2023-06-27', 2);
+INSERT INTO pm_Users (user_displayname, user_password, user_cdate, user_empl_id, user_status, user_ludate, user_role) VALUES ('ChristopherThomas', 'mikepass', '2023-06-27', 'EMP009', 'AC', '2023-06-27', 3);
+INSERT INTO pm_Users (user_displayname, user_password, user_cdate, user_empl_id, user_status, user_ludate, user_role) VALUES ('SophiaMartinez', 'password456', '2023-06-27', 'EMP010', 'AC', '2023-06-27', 1);
+INSERT INTO pm_Users (user_displayname, user_password, user_cdate, user_empl_id, user_status, user_ludate, user_role) VALUES ('DanielHarris', 'pass789word', '2023-06-27', 'EMP011', 'AC', '2023-06-27', 2);
+
+INSERT INTO pm_Users (user_displayname, user_password, user_cdate, user_empl_id, user_status, user_ludate, user_role) VALUES ('AvaClark', 'sarahpass', '2023-06-27', 'EMP012', 'AC', '2023-06-27', 3);
+INSERT INTO pm_Users (user_displayname, user_password, user_cdate, user_empl_id, user_status, user_ludate, user_role) VALUES ('MatthewLee', 'password123', '2023-06-27', 'EMP013', 'AC', '2023-06-27', 1);
+INSERT INTO pm_Users (user_displayname, user_password, user_cdate, user_empl_id, user_status, user_ludate, user_role) VALUES ('IsabellaGonzalez', 'pass321word', '2023-06-27', 'EMP014', 'AC', '2023-06-27', 2);
+INSERT INTO pm_Users (user_displayname, user_password, user_cdate, user_empl_id, user_status, user_ludate, user_role) VALUES ('JosephYoung', 'mikepass', '2023-06-27', 'EMP015', 'AC', '2023-06-27', 3);
+INSERT INTO pm_Users (user_displayname, user_password, user_cdate, user_empl_id, user_status, user_ludate, user_role) VALUES ('MiaHall', 'password456', '2023-06-27', 'EMP016', 'AC', '2023-06-27', 1);
+INSERT INTO pm_Users (user_displayname, user_password, user_cdate, user_empl_id, user_status, user_ludate, user_role) VALUES ('DavidScott', 'pass789word', '2023-06-27', 'EMP017', 'AC', '2023-06-27', 2);
+INSERT INTO pm_Users (user_displayname, user_password, user_cdate, user_empl_id, user_status, user_ludate, user_role) VALUES ('AbigailLopez', 'sarahpass', '2023-06-27', 'EMP018', 'AC', '2023-06-27', 3);
+INSERT INTO pm_Users (user_displayname, user_password, user_cdate, user_empl_id, user_status, user_ludate, user_role) VALUES ('JamesGreen', 'password123', '2023-06-27', 'EMP019', 'AC', '2023-06-27', 1);
+INSERT INTO pm_Users (user_displayname, user_password, user_cdate, user_empl_id, user_status, user_ludate, user_role) VALUES ('EmilyHill', 'pass321word', '2023-06-27', 'EMP021', 'AC', '2023-06-27', 2);
+
+
+UPDATE pm_Users SET email = 'john.doe@example.com' WHERE user_id = 1;
+UPDATE pm_Users SET email = 'jane.smith@example.com' WHERE user_id = 2;
+UPDATE pm_Users SET email = 'mike.johnson@example.com' WHERE user_id = 3;
+UPDATE pm_Users SET email = 'emily.brown@example.com' WHERE user_id = 4;
+UPDATE pm_Users SET email = 'david.wilson@example.com' WHERE user_id = 5;
+UPDATE pm_Users SET email = 'sarah.davis@example.com' WHERE user_id = 6;
+UPDATE pm_Users SET email = 'michael.miller@example.com' WHERE user_id = 7;
+UPDATE pm_Users SET email = 'olivia.anderson@example.com' WHERE user_id = 8;
+UPDATE pm_Users SET email = 'christopher.thomas@example.com' WHERE user_id = 9;
+UPDATE pm_Users SET email = 'sophia.martinez@example.com' WHERE user_id = 10;
+UPDATE pm_Users SET email = 'daniel.harris@example.com' WHERE user_id = 11;
+UPDATE pm_Users SET email = 'ava.clark@example.com' WHERE user_id = 12;
+UPDATE pm_Users SET email = 'matthew.lee@example.com' WHERE user_id = 13;
+UPDATE pm_Users SET email = 'isabella.gonzalez@example.com' WHERE user_id = 14;
+UPDATE pm_Users SET email = 'joseph.young@example.com' WHERE user_id = 15;
+UPDATE pm_Users SET email = 'mia.hall@example.com' WHERE user_id = 16;
+UPDATE pm_Users SET email = 'david.scott@example.com' WHERE user_id = 17;
+UPDATE pm_Users SET email = 'abigail.lopez@example.com' WHERE user_id = 18;
+UPDATE pm_Users SET email = 'james.green@example.com' WHERE user_id = 19;
+UPDATE pm_Users SET email = 'emily.hill@example.com' WHERE user_id = 20;
+
+CREATE TABLE pm_Projects (
+  proj_id smallint PRIMARY KEY,
+  proj_name varchar(100),
+  proj_desc varchar(255),
+  proj_stdate date,
+  proj_manager smallint REFERENCES pm_Users(user_id),
+  proj_status char(2),
+  proj_ludate timestamp
+);
+
+drop table pm_projects
+INSERT INTO pm_Projects (proj_id, proj_name, proj_desc, proj_stdate, proj_manager, proj_status, proj_ludate) VALUES (1, 'Project A', 'Description for Project A', '2023-06-27', 1, 'AC', '2023-06-27 10:30:00');
+INSERT INTO pm_Projects (proj_id, proj_name, proj_desc, proj_stdate, proj_manager, proj_status, proj_ludate) VALUES (2, 'Project B', 'Description for Project B', '2023-06-27', 2, 'AC', '2023-06-28 09:15:00');
+INSERT INTO pm_Projects (proj_id, proj_name, proj_desc, proj_stdate, proj_manager, proj_status, proj_ludate) VALUES (3, 'Project C', 'Description for Project C', '2023-06-27', 3, 'AC', '2023-06-29 14:45:00');
+INSERT INTO pm_Projects (proj_id, proj_name, proj_desc, proj_stdate, proj_manager, proj_status, proj_ludate) VALUES (4, 'Project D', 'Description for Project D', '2023-06-27', 4, 'AC', '2023-06-30 16:20:00');
+INSERT INTO pm_Projects (proj_id, proj_name, proj_desc, proj_stdate, proj_manager, proj_status, proj_ludate) VALUES (5, 'Project E', 'Description for Project E', '2023-06-27', 5, 'AC', '2023-07-01 11:10:00');
+INSERT INTO pm_Projects (proj_id, proj_name, proj_desc, proj_stdate, proj_manager, proj_status, proj_ludate) VALUES (6, 'Project F', 'Description for Project F', '2023-06-27', 6, 'AC', '2023-07-02 13:30:00');
+INSERT INTO pm_Projects (proj_id, proj_name, proj_desc, proj_stdate, proj_manager, proj_status, proj_ludate) VALUES (7, 'Project G', 'Description for Project G', '2023-06-27', 7, 'AC', '2023-07-03 17:45:00');
+INSERT INTO pm_Projects (proj_id, proj_name, proj_desc, proj_stdate, proj_manager, proj_status, proj_ludate) VALUES (8, 'Project H', 'Description for Project H', '2023-06-27', 8, 'AC', '2023-07-04 09:00:00');
+INSERT INTO pm_Projects (proj_id, proj_name, proj_desc, proj_stdate, proj_manager, proj_status, proj_ludate) VALUES (9, 'Project I', 'Description for Project I', '2023-06-27', 9, 'AC', '2023-07-05 15:20:00');
+INSERT INTO pm_Projects (proj_id, proj_name, proj_desc, proj_stdate, proj_manager, proj_status, proj_ludate) VALUES (10, 'Project J', 'Description for Project J', '2023-06-27', 10, 'AC', '2023-07-06 12:45:00');
+INSERT INTO pm_Projects (proj_id, proj_name, proj_desc, proj_stdate, proj_manager, proj_status, proj_ludate) VALUES (11, 'Project K', 'Description for Project K', '2023-06-27', 11, 'AC', '2023-07-07 14:30:00');
+INSERT INTO pm_Projects (proj_id, proj_name, proj_desc, proj_stdate, proj_manager, proj_status, proj_ludate) VALUES (12, 'Project L', 'Description for Project L', '2023-06-27', 12, 'AC', '2023-07-08 16:50:00');
+INSERT INTO pm_Projects (proj_id, proj_name, proj_desc, proj_stdate, proj_manager, proj_status, proj_ludate) VALUES (13, 'Project M', 'Description for Project M', '2023-06-27', 13, 'AC', '2023-07-09 10:15:00');
+INSERT INTO pm_Projects (proj_id, proj_name, proj_desc, proj_stdate, proj_manager, proj_status, proj_ludate) VALUES (14, 'Project N', 'Description for Project N', '2023-06-27', 14, 'AC', '2023-07-10 13:20:00');
+INSERT INTO pm_Projects (proj_id, proj_name, proj_desc, proj_stdate, proj_manager, proj_status, proj_ludate) VALUES (15, 'Project O', 'Description for Project O', '2023-06-27', 15, 'AC', '2023-07-11 11:40:00');
+
+
+CREATE TABLE pm_ProjectModules (
+  modl_id smallint PRIMARY KEY,
+  modl_name varchar(100),
+  modl_desc varchar(255),
+  modl_proj_id smallint REFERENCES pm_Projects(proj_id)
+);
+
+INSERT INTO pm_ProjectModules (modl_id, modl_name, modl_desc, modl_proj_id) VALUES (1, 'Module A', 'Description for Module A', 1);
+INSERT INTO pm_ProjectModules (modl_id, modl_name, modl_desc, modl_proj_id) VALUES (2, 'Module B', 'Description for Module B', 1);
+INSERT INTO pm_ProjectModules (modl_id, modl_name, modl_desc, modl_proj_id) VALUES (3, 'Module C', 'Description for Module C', 2);
+INSERT INTO pm_ProjectModules (modl_id, modl_name, modl_desc, modl_proj_id) VALUES (4, 'Module D', 'Description for Module D', 2);
+INSERT INTO pm_ProjectModules (modl_id, modl_name, modl_desc, modl_proj_id) VALUES (5, 'Module E', 'Description for Module E', 3);
+INSERT INTO pm_ProjectModules (modl_id, modl_name, modl_desc, modl_proj_id) VALUES (6, 'Module F', 'Description for Module F', 3);
+INSERT INTO pm_ProjectModules (modl_id, modl_name, modl_desc, modl_proj_id) VALUES (7, 'Module G', 'Description for Module G', 4);
+INSERT INTO pm_ProjectModules (modl_id, modl_name, modl_desc, modl_proj_id) VALUES (8, 'Module H', 'Description for Module H', 4);
+INSERT INTO pm_ProjectModules (modl_id, modl_name, modl_desc, modl_proj_id) VALUES (9, 'Module I', 'Description for Module I', 5);
+INSERT INTO pm_ProjectModules (modl_id, modl_name, modl_desc, modl_proj_id) VALUES (10, 'Module J', 'Description for Module J', 5);
+INSERT INTO pm_ProjectModules (modl_id, modl_name, modl_desc, modl_proj_id) VALUES (11, 'Module K', 'Description for Module K', 6);
+INSERT INTO pm_ProjectModules (modl_id, modl_name, modl_desc, modl_proj_id) VALUES (12, 'Module L', 'Description for Module L', 6);
+INSERT INTO pm_ProjectModules (modl_id, modl_name, modl_desc, modl_proj_id) VALUES (13, 'Module M', 'Description for Module M', 7);
+INSERT INTO pm_ProjectModules (modl_id, modl_name, modl_desc, modl_proj_id) VALUES (14, 'Module N', 'Description for Module N', 7);
+INSERT INTO pm_ProjectModules (modl_id, modl_name, modl_desc, modl_proj_id) VALUES (15, 'Module O', 'Description for Module O', 8);
+
+
+CREATE TABLE pm_Tasks (
+  task_id serial PRIMARY KEY,
+  task_name varchar(200),
+  task_cdatetime timestamp,
+  task_type char(4),
+  task_ref_task_id int REFERENCES pm_Tasks(task_id),
+  task_category varchar(50),
+  task_desc text,
+  task_creator smallint REFERENCES pm_Users(user_id),
+  task_noh_reqd numeric,
+  task_exp_datetime timestamp,
+  task_cmp_datetime timestamp,
+  task_supervisor smallint REFERENCES pm_Users(user_id),
+  task_remarks varchar(200),
+  task_status char(4),
+  proj_id smallint REFERENCES pm_Projects(proj_id),
+  modl_id smallint REFERENCES pm_ProjectModules(modl_id)
+);
+
+INSERT INTO pm_Tasks (task_id, task_name, task_cdatetime, task_type, task_ref_task_id, task_category, task_desc, task_creator, task_noh_reqd, task_exp_datetime, task_cmp_datetime, task_supervisor, task_remarks, task_status, proj_id, modl_id)
+VALUES (1, 'Task A', '2023-06-27 10:00:00', 'TYPE', NULL, 'Category A', 'Description for Task A', 1, 5, '2023-06-28 15:00:00', NULL, 2, 'Remarks for Task A', 'STAT', 1, 1);
+
+INSERT INTO pm_Tasks (task_id, task_name, task_cdatetime, task_type, task_ref_task_id, task_category, task_desc, task_creator, task_noh_reqd, task_exp_datetime, task_cmp_datetime, task_supervisor, task_remarks, task_status, proj_id, modl_id)
+VALUES (2, 'Task B', '2023-06-27 11:30:00', 'TYPE', NULL, 'Category B', 'Description for Task B', 3, 3, '2023-06-29 10:00:00', '2023-06-29 12:30:00', 4, 'Remarks for Task B', 'STAT', 2, 2);
+
+INSERT INTO pm_Tasks (task_id, task_name, task_cdatetime, task_type, task_ref_task_id, task_category, task_desc, task_creator, task_noh_reqd, task_exp_datetime, task_cmp_datetime, task_supervisor, task_remarks, task_status, proj_id, modl_id)
+VALUES (3, 'Task C', '2023-06-27 14:45:00', 'TYPE', NULL, 'Category A', 'Description for Task C', 2, 2, '2023-06-30 09:00:00', NULL, 1, 'Remarks for Task C', 'STAT', 1, 1);
+
+INSERT INTO pm_Tasks (task_id, task_name, task_cdatetime, task_type, task_ref_task_id, task_category, task_desc, task_creator, task_noh_reqd, task_exp_datetime, task_cmp_datetime, task_supervisor, task_remarks, task_status, proj_id, modl_id)
+VALUES (4, 'Task D', '2023-06-27 16:20:00', 'TYPE', NULL, 'Category B', 'Description for Task D', 4, 4, '2023-07-01 14:30:00', '2023-07-01 16:45:00', 1, 'Remarks for Task D', 'STAT', 2, 2);
+
+INSERT INTO pm_Tasks (task_id, task_name, task_cdatetime, task_type, task_ref_task_id, task_category, task_desc, task_creator, task_noh_reqd, task_exp_datetime, task_cmp_datetime, task_supervisor, task_remarks, task_status, proj_id, modl_id)
+VALUES (5, 'Task E', '2023-06-28 09:10:00', 'TYPE', 1, 'Category A', 'Description for Task E', 3, 2, '2023-07-02 12:00:00', NULL, 3, 'Remarks for Task E', 'STAT', 1, 1);
+
+INSERT INTO pm_Tasks (task_id, task_name, task_cdatetime, task_type, task_ref_task_id, task_category, task_desc, task_creator, task_noh_reqd, task_exp_datetime, task_cmp_datetime, task_supervisor, task_remarks, task_status, proj_id, modl_id)
+VALUES (6, 'Task F', '2023-06-28 11:45:00', 'TYPE', 2, 'Category B', 'Description for Task F', 1, 4, '2023-07-03 10:30:00', '2023-07-03 13:15:00', 2, 'Remarks for Task F', 'STAT', 2, 2);
+
+INSERT INTO pm_Tasks (task_id, task_name, task_cdatetime, task_type, task_ref_task_id, task_category, task_desc, task_creator, task_noh_reqd, task_exp_datetime, task_cmp_datetime, task_supervisor, task_remarks, task_status, proj_id, modl_id)
+VALUES (7, 'Task G', '2023-06-28 13:55:00', 'TYPE', NULL, 'Category A', 'Description for Task G', 2, 3, '2023-07-04 09:45:00', NULL, 4, 'Remarks for Task G', 'STAT', 1, 1);
+
+INSERT INTO pm_Tasks (task_id, task_name, task_cdatetime, task_type, task_ref_task_id, task_category, task_desc, task_creator, task_noh_reqd, task_exp_datetime, task_cmp_datetime, task_supervisor, task_remarks, task_status, proj_id, modl_id)
+VALUES (8, 'Task H', '2023-06-28 15:30:00', 'TYPE', NULL, 'Category B', 'Description for Task H', 4, 2, '2023-07-05 11:20:00', '2023-07-05 14:00:00', 1, 'Remarks for Task H', 'STAT', 2, 2);
+
+INSERT INTO pm_Tasks (task_id, task_name, task_cdatetime, task_type, task_ref_task_id, task_category, task_desc, task_creator, task_noh_reqd, task_exp_datetime, task_cmp_datetime, task_supervisor, task_remarks, task_status, proj_id, modl_id)
+VALUES (9, 'Task I', '2023-06-29 10:25:00', 'TYPE', 5, 'Category A', 'Description for Task I', 3, 3, '2023-07-06 13:30:00', NULL, 2, 'Remarks for Task I', 'STAT', 1, 1);
+
+INSERT INTO pm_Tasks (task_id, task_name, task_cdatetime, task_type, task_ref_task_id, task_category, task_desc, task_creator, task_noh_reqd, task_exp_datetime, task_cmp_datetime, task_supervisor, task_remarks, task_status, proj_id, modl_id)
+VALUES (10, 'Task J', '2023-06-29 12:40:00', 'TYPE', 6, 'Category B', 'Description for Task J', 1, 4, '2023-07-07 10:45:00', '2023-07-07 13:15:00', 3, 'Remarks for Task J', 'STAT', 2, 2);
+
+INSERT INTO pm_Tasks (task_id, task_name, task_cdatetime, task_type, task_ref_task_id, task_category, task_desc, task_creator, task_noh_reqd, task_exp_datetime, task_cmp_datetime, task_supervisor, task_remarks, task_status, proj_id, modl_id)
+VALUES (11, 'Task K', '2023-06-29 14:20:00', 'TYPE', NULL, 'Category A', 'Description for Task K', 2, 3, '2023-07-08 09:30:00', NULL, 4, 'Remarks for Task K', 'STAT', 1, 1);
+
+INSERT INTO pm_Tasks (task_id, task_name, task_cdatetime, task_type, task_ref_task_id, task_category, task_desc, task_creator, task_noh_reqd, task_exp_datetime, task_cmp_datetime, task_supervisor, task_remarks, task_status, proj_id, modl_id)
+VALUES (12, 'Task L', '2023-06-29 16:10:00', 'TYPE', NULL, 'Category B', 'Description for Task L', 4, 2, '2023-07-09 11:00:00', '2023-07-09 13:45:00', 1, 'Remarks for Task L', 'STAT', 2, 2);
+
+INSERT INTO pm_Tasks (task_id, task_name, task_cdatetime, task_type, task_ref_task_id, task_category, task_desc, task_creator, task_noh_reqd, task_exp_datetime, task_cmp_datetime, task_supervisor, task_remarks, task_status, proj_id, modl_id)
+VALUES (13, 'Task M', '2023-06-30 09:15:00', 'TYPE', 9, 'Category A', 'Description for Task M', 3, 3, '2023-07-10 12:30:00', NULL, 2, 'Remarks for Task M', 'STAT', 1, 1);
+
+INSERT INTO pm_Tasks (task_id, task_name, task_cdatetime, task_type, task_ref_task_id, task_category, task_desc, task_creator, task_noh_reqd, task_exp_datetime, task_cmp_datetime, task_supervisor, task_remarks, task_status, proj_id, modl_id)
+VALUES (14, 'Task N', '2023-06-30 11:40:00', 'TYPE', 10, 'Category B', 'Description for Task N', 1, 4, '2023-07-11 10:15:00', '2023-07-11 13:30:00', 3, 'Remarks for Task N', 'STAT', 2, 2);
+
+INSERT INTO pm_Tasks (task_id, task_name, task_cdatetime, task_type, task_ref_task_id, task_category, task_desc, task_creator, task_noh_reqd, task_exp_datetime, task_cmp_datetime, task_supervisor, task_remarks, task_status, proj_id, modl_id)
+VALUES (15, 'Task O', '2023-06-30 13:25:00', 'TYPE', NULL, 'Category A', 'Description for Task O', 2, 3, '2023-07-12 09:45:00', NULL, 4, 'Remarks for Task O', 'STAT', 1, 1);
+
+
+CREATE TABLE pm_SubTasks (
+  task_id int REFERENCES pm_Tasks(task_id),
+  sbts_id smallint,
+  sbts_parent_sbts_id smallint,
+  PRIMARY KEY (task_id, sbts_id)
+);
+
+
+CREATE TABLE pm_ProjectTasks (
+  task_id INTEGER PRIMARY KEY,
+  task_user_id INTEGER,
+  task_name VARCHAR(200),
+  task_cdatetime TIMESTAMP,
+  task_category VARCHAR(50),
+  task_desc TEXT,
+  task_creator INTEGER,
+  task_noh_reqd NUMERIC,
+  task_exp_datetime TIMESTAMP,
+  task_actualhours NUMERIC,
+  task_cmp_datetime TIMESTAMP,
+  task_status VARCHAR(4),
+  proj_id INTEGER,
+  task_modl_id INTEGER,
+  FOREIGN KEY (task_user_id) REFERENCES pm_Users (user_id),
+  FOREIGN KEY (task_creator) REFERENCES pm_Users (user_id),
+  FOREIGN KEY (proj_id) REFERENCES pm_Projects (proj_id)
+);
+drop table pm_projecttasks
+
+INSERT INTO pm_ProjectTasks (task_id, task_user_id, task_name, task_cdatetime, task_category, task_desc, task_creator, task_noh_reqd, task_exp_datetime, task_actualhours, task_cmp_datetime, task_status, proj_id) VALUES (1, 1, 'Task 1', '2023-06-27 09:00:00', 'Category 1', 'Description 1', 1, 8.5, '2023-06-28 17:00:00', 7.5, '2023-06-28 16:30:00', 'COMP', 1);
+INSERT INTO pm_ProjectTasks (task_id, task_user_id, task_name, task_cdatetime, task_category, task_desc, task_creator, task_noh_reqd, task_exp_datetime, task_actualhours, task_cmp_datetime, task_status, proj_id) VALUES (2, 2, 'Task 2', '2023-06-27 10:00:00', 'Category 2', 'Description 2', 2, 6.0, '2023-06-29 14:00:00', NULL, NULL, 'INPR', 1);
+INSERT INTO pm_ProjectTasks (task_id, task_user_id, task_name, task_cdatetime, task_category, task_desc, task_creator, task_noh_reqd, task_exp_datetime, task_actualhours, task_cmp_datetime, task_status, proj_id) VALUES (3, 3, 'Task 3', '2023-06-27 11:00:00', 'Category 1', 'Description 3', 3, 4.5, '2023-06-30 10:00:00', NULL, NULL, 'INPR', 2);
+INSERT INTO pm_ProjectTasks (task_id, task_user_id, task_name, task_cdatetime, task_category, task_desc, task_creator, task_noh_reqd, task_exp_datetime, task_actualhours, task_cmp_datetime, task_status, proj_id) VALUES (4, 4, 'Task 4', '2023-06-27 12:00:00', 'Category 3', 'Description 4', 4, 3.0, '2023-07-01 16:00:00', NULL, NULL, 'REFC', 2);
+INSERT INTO pm_ProjectTasks (task_id, task_user_id, task_name, task_cdatetime, task_category, task_desc, task_creator, task_noh_reqd, task_exp_datetime, task_actualhours, task_cmp_datetime, task_status, proj_id) VALUES (5, 1, 'Task 5', '2023-06-27 13:00:00', 'Category 2', 'Description 5', 2, 5.0, '2023-07-02 12:00:00', NULL, NULL, 'REVW', 3);
+INSERT INTO pm_ProjectTasks (task_id, task_user_id, task_name, task_cdatetime, task_category, task_desc, task_creator, task_noh_reqd, task_exp_datetime, task_actualhours, task_cmp_datetime, task_status, proj_id) VALUES (6, 2, 'Task 6', '2023-06-27 14:00:00', 'Category 1', 'Description 6', 3, 6.5, '2023-07-03 09:00:00', 5.0, '2023-07-03 11:30:00', 'COMP', 3);
+INSERT INTO pm_ProjectTasks (task_id, task_user_id, task_name, task_cdatetime, task_category, task_desc, task_creator, task_noh_reqd, task_exp_datetime, task_actualhours, task_cmp_datetime, task_status, proj_id) VALUES (7, 3, 'Task 7', '2023-06-27 15:00:00', 'Category 3', 'Description 7', 4, 4.0, '2023-07-04 14:00:00', NULL, NULL, 'REFC', 4);
+INSERT INTO pm_ProjectTasks (task_id, task_user_id, task_name, task_cdatetime, task_category, task_desc, task_creator, task_noh_reqd, task_exp_datetime, task_actualhours, task_cmp_datetime, task_status, proj_id) VALUES (8, 4, 'Task 8', '2023-06-27 16:00:00', 'Category 2', 'Description 8', 1, 7.0, '2023-07-05 11:00:00', 6.0, '2023-07-05 16:30:00', 'COMP', 4);
+INSERT INTO pm_ProjectTasks (task_id, task_user_id, task_name, task_cdatetime, task_category, task_desc, task_creator, task_noh_reqd, task_exp_datetime, task_actualhours, task_cmp_datetime, task_status, proj_id) VALUES (9, 1, 'Task 9', '2023-06-27 17:00:00', 'Category 1', 'Description 9', 2, 8.0, '2023-07-06 10:00:00', 7.5, '2023-07-06 12:30:00', 'COMP', 5);
+INSERT INTO pm_ProjectTasks (task_id, task_user_id, task_name, task_cdatetime, task_category, task_desc, task_creator, task_noh_reqd, task_exp_datetime, task_actualhours, task_cmp_datetime, task_status, proj_id) VALUES (10, 2, 'Task 10', '2023-06-27 18:00:00', 'Category 2', 'Description 10', 3, 5.5, '2023-07-07 16:00:00', NULL, NULL, 'INPR', 5);
+INSERT INTO pm_ProjectTasks (task_id, task_user_id, task_name, task_cdatetime, task_category, task_desc, task_creator, task_noh_reqd, task_exp_datetime, task_actualhours, task_cmp_datetime, task_status, proj_id) VALUES (11, 3, 'Task 11', '2023-06-27 19:00:00', 'Category 3', 'Description 11', 4, 4.5, '2023-07-08 12:00:00', NULL, NULL, 'REVW', 6);
+INSERT INTO pm_ProjectTasks (task_id, task_user_id, task_name, task_cdatetime, task_category, task_desc, task_creator, task_noh_reqd, task_exp_datetime, task_actualhours, task_cmp_datetime, task_status, proj_id) VALUES (12, 4, 'Task 12', '2023-06-27 20:00:00', 'Category 1', 'Description 12', 1, 6.5, '2023-07-09 09:00:00', NULL, NULL,'COMP',5);
+
+INSERT INTO pm_ProjectTasks (task_id, task_user_id, task_name, task_cdatetime, task_category, task_desc, task_creator, task_noh_reqd, task_exp_datetime, task_actualhours, task_cmp_datetime, task_status, proj_id)
+VALUES (13, 4, 'Task 13', '2023-06-27 21:00:00', 'Category 1', 'Description 13', 2, 7.00, '2023-07-10 14:00:00', NULL, NULL, 'INPR', 2);
+
+INSERT INTO pm_ProjectTasks (task_id, task_user_id, task_name, task_cdatetime, task_category, task_desc, task_creator, task_noh_reqd, task_exp_datetime, task_actualhours, task_cmp_datetime, task_status, proj_id)
+VALUES (14, 4, 'Task 14', '2023-06-27 22:00:00', 'Category 2', 'Description 14', 3, 8.00, '2023-07-11 10:00:00', NULL, NULL, 'REVW', 2);
+
+INSERT INTO pm_ProjectTasks (task_id, task_user_id, task_name, task_cdatetime, task_category, task_desc, task_creator, task_noh_reqd, task_exp_datetime, task_actualhours, task_cmp_datetime, task_status, proj_id)
+VALUES (15, 4, 'Task 15', '2023-06-27 23:00:00', 'Category 3', 'Description 15', 4, 9.00, '2023-07-12 16:00:00', NULL, NULL, 'COMP', 3);
+
+INSERT INTO pm_ProjectTasks (task_id, task_user_id, task_name, task_cdatetime, task_category, task_desc, task_creator, task_noh_reqd, task_exp_datetime, task_actualhours, task_cmp_datetime, task_status, proj_id)
+VALUES (16, 4, 'Task 16', '2023-06-27 23:30:00', 'Category 1', 'Description 16', 1, 7.50, '2023-07-13 12:00:00', NULL, NULL, 'REFC', 3);
+
+INSERT INTO pm_ProjectTasks (task_id, task_user_id, task_name, task_cdatetime, task_category, task_desc, task_creator, task_noh_reqd, task_exp_datetime, task_actualhours, task_cmp_datetime, task_status, proj_id)
+VALUES (17, 1, 'Task 17', '2023-06-27 21:30:00', 'Category 2', 'Description 17', 3, 6.50, '2023-07-14 09:00:00', NULL, NULL, 'COMP', 2);
+
+INSERT INTO pm_ProjectTasks (task_id, task_user_id, task_name, task_cdatetime, task_category, task_desc, task_creator, task_noh_reqd, task_exp_datetime, task_actualhours, task_cmp_datetime, task_status, proj_id)
+VALUES (18, 1, 'Task 18', '2023-06-27 22:30:00', 'Category 3', 'Description 18', 4, 5.50, '2023-07-15 14:00:00', NULL, NULL, 'INPR', 2);
+
+INSERT INTO pm_ProjectTasks (task_id, task_user_id, task_name, task_cdatetime, task_category, task_desc, task_creator, task_noh_reqd, task_exp_datetime, task_actualhours, task_cmp_datetime, task_status, proj_id)
+VALUES (19, 1, 'Task 19', '2023-06-27 23:30:00', 'Category 1', 'Description 19', 1, 6.00, '2023-07-16 10:00:00', NULL, NULL, 'REVW', 3);
+
+INSERT INTO pm_ProjectTasks (task_id, task_user_id, task_name, task_cdatetime, task_category, task_desc, task_creator, task_noh_reqd, task_exp_datetime, task_actualhours, task_cmp_datetime, task_status, proj_id)
+VALUES (20, 1, 'Task 20', '2023-06-28 00:00:00', 'Category 2', 'Description 20', 2, 7.00, '2023-07-17 16:00:00', NULL, NULL, 'COMP', 4);
+
+drop table pm_functional_units
+CREATE TABLE pm_functional_units (
+    modl_id INT,
+    funt_id INT,
+    fun_status VARCHAR(2),
+    funit_desc VARCHAR(255),
+    proj_id INT,
+    CONSTRAINT pk_pm_functional_units PRIMARY KEY (modl_id, funt_id),
+    CONSTRAINT fk_pm_functional_units_proj_id FOREIGN KEY (proj_id) REFERENCES pm_projects(proj_id),
+    CONSTRAINT chk_pm_functional_units_fun_status CHECK (fun_status IN ('AS', 'UA'))
+);
+
+INSERT INTO pm_functional_units (modl_id, funt_id, fun_status, funit_desc, proj_id)
+VALUES (1, 1, 'AS', 'Functional Unit 1 Description', 1);
+
+-- Insert statement 2
+INSERT INTO pm_functional_units (modl_id, funt_id, fun_status, funit_desc, proj_id)
+VALUES (2, 2, 'UA', 'Functional Unit 2 Description', 1);
+
+-- Insert statement 3
+INSERT INTO pm_functional_units (modl_id, funt_id, fun_status, funit_desc, proj_id)
+VALUES (3, 3, 'AS', 'Functional Unit 3 Description', 2);
+
+-- Insert statement 4
+INSERT INTO pm_functional_units (modl_id, funt_id, fun_status, funit_desc, proj_id)
+VALUES (4, 4, 'UA', 'Functional Unit 4 Description', 2);
+
+-- Insert statement 5
+INSERT INTO pm_functional_units (modl_id, funt_id, fun_status, funit_desc, proj_id)
+VALUES (5, 5, 'AS', 'Functional Unit 5 Description', 3);
+
+-- Insert statement 6
+INSERT INTO pm_functional_units (modl_id, funt_id, fun_status, funit_desc, proj_id)
+VALUES (6, 6, 'UA', 'Functional Unit 6 Description', 3);
+
+-- Insert statement 7
+INSERT INTO pm_functional_units (modl_id, funt_id, fun_status, funit_desc, proj_id)
+VALUES (7, 7, 'AS', 'Functional Unit 7 Description', 4);
+
+-- Insert statement 8
+INSERT INTO pm_functional_units (modl_id, funt_id, fun_status, funit_desc, proj_id)
+VALUES (8, 8, 'UA', 'Functional Unit 8 Description', 4);
+
+-- Insert statement 9
+INSERT INTO pm_functional_units (modl_id, funt_id, fun_status, funit_desc, proj_id)
+VALUES (9, 9, 'AS', 'Functional Unit 9 Description', 5);
+
+-- Insert statement 10
+INSERT INTO pm_functional_units (modl_id, funt_id, fun_status, funit_desc, proj_id)
+VALUES (10, 10, 'UA', 'Functional Unit 10 Description', 5);
+
+-- Insert statement 11
+INSERT INTO pm_functional_units (modl_id, funt_id, fun_status, funit_desc, proj_id)
+VALUES (11, 11, 'AS', 'Functional Unit 11 Description', 6);
+
+-- Insert statement 12
+INSERT INTO pm_functional_units (modl_id, funt_id, fun_status, funit_desc, proj_id)
+VALUES (12, 12, 'UA', 'Functional Unit 12 Description', 6);
+
+-- Insert statement 13
+INSERT INTO pm_functional_units (modl_id, funt_id, fun_status, funit_desc, proj_id)
+VALUES (13, 13, 'AS', 'Functional Unit 13 Description', 7);
+
+-- Insert statement 14
+INSERT INTO pm_functional_units (modl_id, funt_id, fun_status, funit_desc, proj_id)
+VALUES (14, 14, 'UA', 'Functional Unit 14 Description', 7);
+
+-- Insert statement 15
+INSERT INTO pm_functional_units (modl_id, funt_id, fun_status, funit_desc, proj_id)
+VALUES (15, 15, 'AS', 'Functional Unit 15 Description', 8);
+
+CREATE TABLE pm_Sprints (
+  sprn_id smallint PRIMARY KEY,
+  sprn_modl_id smallint REFERENCES pm_ProjectModules(modl_id),
+  sprn_master smallint REFERENCES pm_Users(user_id),
+  sprn_stdate timestamp,
+  sprn_enddate timestamp,
+  proj_id smallint REFERENCES pm_Projects(proj_id)
+);
+
+INSERT INTO pm_Sprints (sprn_id, sprn_modl_id, sprn_master, sprn_stdate, sprn_enddate, proj_id) VALUES
+(1, 1, 2, '2023-06-01 09:00:00', '2023-06-15 18:00:00', 1),
+(2, 1, 3, '2023-07-01 09:00:00', '2023-07-15 18:00:00', 1),
+(3, 2, 1, '2023-07-15 09:00:00', '2023-07-31 18:00:00', 1),
+(4, 2, 3, '2023-08-01 09:00:00', '2023-08-15 18:00:00', 1),
+(5, 3, 2, '2023-08-15 09:00:00', '2023-08-31 18:00:00', 1),
+(6, 4, 1, '2023-09-01 09:00:00', '2023-09-15 18:00:00', 2),
+(7, 4, 3, '2023-09-15 09:00:00', '2023-09-30 18:00:00', 2),
+(8, 5, 2, '2023-10-01 09:00:00', '2023-10-15 18:00:00', 2),
+(9, 5, 1, '2023-10-15 09:00:00', '2023-10-31 18:00:00', 2),
+(10, 6, 3, '2023-11-01 09:00:00', '2023-11-15 18:00:00', 2),
+(11, 7, 1, '2023-11-15 09:00:00', '2023-11-30 18:00:00', 3),
+(12, 7, 2, '2023-12-01 09:00:00', '2023-12-15 18:00:00', 3),
+(13, 8, 3, '2023-12-15 09:00:00', '2023-12-31 18:00:00', 3),
+(14, 9, 2, '2024-01-01 09:00:00', '2024-01-15 18:00:00', 3),
+(15, 9, 1, '2024-01-15 09:00:00', '2024-01-31 18:00:00', 3);
+
+
+CREATE TABLE pm_SprintResources (
+  sprn_id smallint,
+  user_id smallint REFERENCES pm_Users(user_id),
+  sprs_role_id smallint REFERENCES pm_Roles(role_id),
+  PRIMARY KEY (sprn_id, user_id)
+);
+
+INSERT INTO pm_SprintResources (sprn_id, user_id, sprs_role_id) VALUES
+(1,1,1),
+(1, 2, 2),
+(2, 3, 1),
+(2, 4, 3),
+(3, 5, 2),
+(3, 6, 1),
+(4, 7, 3),
+(4, 8, 2),
+(5, 9, 1),
+(5, 10, 1),
+
+--if required we can add
+(6, 111, 3),
+(6, 112, 3),
+(7, 113, 2),
+(7, 114, 1),
+(8, 115, 2);
+
+CREATE TABLE pm_SprintTasks (
+  sprn_id smallint REFERENCES pm_Sprints(sprn_id),
+  task_id int REFERENCES pm_Tasks(task_id),
+  user_id smallint REFERENCES pm_Users(user_id),
+  PRIMARY KEY (sprn_id, task_id)
+);
+
+INSERT INTO pm_SprintTasks (sprn_id, task_id, user_id) VALUES
+(1, 1, 2),
+(1, 2, 3),
+(1, 3, 1),
+(2, 2, 2),
+(2, 4, 1),
+(2, 5, 3),
+(3, 3, 2),
+(3, 6, 1),
+(3, 7, 3),
+(4, 1, 2),
+(4, 4, 3),
+(4, 5, 1),
+(5, 2, 2),
+(5, 3, 1),
+(5, 6, 3);
+
+CREATE TABLE pm_SprintBacklog (
+  sprn_id smallint REFERENCES pm_Sprints(sprn_id),
+  task_id int REFERENCES pm_Tasks(task_id),
+  PRIMARY KEY (sprn_id, task_id)
+);
+
+INSERT INTO pm_SprintBacklog (sprn_id, task_id) VALUES
+(1, 1),
+(1, 2),
+(1, 3),
+(2, 2),
+(2, 4),
+(2, 5),
+(3, 3),
+(3, 6),
+(3, 7),
+(4, 1),
+(4, 4),
+(4, 5),
+(5, 2),
+(5, 3),
+(5, 6);
+
+
+
